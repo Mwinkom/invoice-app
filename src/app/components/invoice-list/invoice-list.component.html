@@ -1,1 +1,36 @@
+<section class="invoice-list">
+  <div class="topbar">
+    <div class="text">
+      <h1>Invoices</h1>
+      <p>There are {{ invoices.length }} pending invoices</p>
+    </div>
 
+    <div class="filters">
+        <label for="status-filter" class="visually-hidden">Filter</label>
+        <select id="status-filter" [(ngModel)]="selectedStatus">
+            <option value="">All</option>
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+            <option value="draft">Draft</option>
+        </select>
+    </div>
+
+    <button class="new-invoice-btn">
+      <img src="assets/icon-plus.svg" alt="plus icon" />
+      <span>New Invoice</span>
+    </button>
+  </div>
+
+  <div class="invoices">
+    @for (invoice of filteredInvoices; track invoice.id) {
+  <div class="invoice-card" [routerLink]="['/invoices', invoice.id]">
+      <div class="id">#{{ invoice.id }}</div>
+      <div class="payment-due">Due {{ invoice.paymentDue }}</div>
+      <div class="client-name">{{ invoice.clientName }}</div>
+      <div class="total">{{ invoice.total | currency }}</div>
+      <app-status-badge [status]="invoice.status"></app-status-badge>
+      <img src="assets/icon-arrow-right.svg" alt="View Invoice" class="arrow" />
+    </div>
+    }
+</div>
+</section>

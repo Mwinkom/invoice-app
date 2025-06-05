@@ -1,1 +1,86 @@
-<p>invoice-details works!</p>
+<div class="invoice-details">
+
+  <a routerLink="/invoices" class="go-back">
+    <img src="/assets/icon-arrow-left.svg" alt="back arrow" />
+    <span>Go back</span>
+  </a>
+
+  <!-- Status + Buttons -->
+  <div class="invoice-status-bar">
+    <span>Status</span>
+    <app-status-badge [status]="invoice?.status"></app-status-badge>
+
+    <div class="actions">
+      <button class="btn edit" [routerLink]="['/invoices', invoice?.id, 'edit']">
+         Edit
+      </button>
+      <button class="btn delete">Delete</button>
+      <button class="btn mark-paid">Mark as Paid</button>
+    </div>
+  </div>
+
+  <!-- Invoice Info Block -->
+  <div class="invoice-card">
+    <div class="top">
+      <div class="id-desc">
+        <h2><span>#</span>{{ invoice?.id }}</h2>
+        <p>{{ invoice?.description }}</p>
+      </div>
+      <div class="sender-address">
+        <p>{{ invoice?.senderAddress.street }}</p>
+        <p>{{ invoice?.senderAddress.city }}</p>
+        <p>{{ invoice?.senderAddress.postCode }}</p>
+        <p>{{ invoice?.senderAddress.country }}</p>
+      </div>
+    </div>
+
+    <div class="middle">
+      <div class="invoice-dates">
+        <div>
+          <p>Invoice Date</p>
+          <strong>{{ invoice?.createdAt }}</strong>
+        </div>
+        <div>
+          <p>Payment Due</p>
+          <strong>{{ invoice?.paymentDue }}</strong>
+        </div>
+      </div>
+
+      <div class="bill-to">
+        <p>Bill To</p>
+        <strong>{{ invoice?.clientName }}</strong>
+        <p>{{ invoice?.clientAddress.street }}</p>
+        <p>{{ invoice?.clientAddress.city }}</p>
+        <p>{{ invoice?.clientAddress.postCode }}</p>
+        <p>{{ invoice?.clientAddress.country }}</p>
+      </div>
+
+      <div class="sent-to">
+        <p>Sent to</p>
+        <strong>{{ invoice?.clientEmail }}</strong>
+      </div>
+    </div>
+
+    <!-- Item List -->
+    <div class="item-list">
+      <div class="item-list-header">
+        <p>Item Name</p>
+        <p>QTY</p>
+        <p>Price</p>
+        <p>Total</p>
+      </div>
+
+      <div class="item" *ngFor="let item of invoice?.items">
+        <p>{{ item.name }}</p>
+        <p>{{ item.quantity }}</p>
+        <p>{{ item.price | currency }}</p>
+        <p>{{ item.total | currency }}</p>
+      </div>
+    </div>
+
+    <div class="grand-total">
+      <p>Amount Due</p>
+      <h2>{{ invoice?.total | currency }}</h2>
+    </div>
+  </div>
+</div>

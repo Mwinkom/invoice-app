@@ -1,0 +1,81 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'base' as *;
+
+.app-header {
+  background-color: $color-draft;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+    .logo {
+        height: 72px;
+        width: auto;
+    }
+
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+
+    .vertical-line {
+      width: 1px;
+      height: 72px;
+      background-color: #494E6E;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      margin: 0 24px;
+    }
+
+    .avatar {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      margin: 20px 24px;
+    }
+  }
+}
+
+@include responsive(desktop) {
+  .app-header {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 103px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 27px;
+
+    .logo {
+        height: 103px;
+        width: 103px;
+    }
+
+    .profile-section {
+    flex-direction: column;
+    gap: $space-md;
+
+        .vertical-line {
+            width: 103px;
+            height: 1px;
+        }
+
+        .theme-toggle {
+        margin: 32px 0;
+        }
+
+        .avatar {
+        height: 40px;
+        width: 40px;
+        margin: 24px 0;
+        }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.invoice-list {
+  padding: $space-md;
+
+  // ---------- Top Bar ----------
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $space-lg;
+    flex-wrap: wrap;
+
+    .filters {
+        font-size: $font-h3;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+    select {
+        appearance: none;
+        color: $color-black;
+        font-size: $font-body-1;
+        padding: $space-sm $space-md;
+        border-radius: 8px;
+        border: 1px solid $color-text-muted;
+        font-weight: 500;
+        line-height: 1.5;
+        cursor: pointer;
+        background-image: url('/assets/icon-arrow-down.svg');
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 0.75rem;
+
+        &:focus {
+        outline: none;
+        border-color: $color-primary;
+        }
+    }
+    }
+
+
+    .text {
+      h1 {
+        font-size: $font-h1;
+        color: $color-black;
+        margin-bottom: $space-xs;
+      }
+
+      p {
+        color: $color-text-muted;
+        font-size: $font-body-1;
+      }
+    }
+
+    .new-invoice-btn {
+      display: flex;
+      align-items: center;
+      background-color: $color-primary;
+      color: $color-white;
+      border: none;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: $font-body-1;
+      padding: $space-sm $space-md;
+      cursor: pointer;
+      gap: $space-md;
+      margin-top: $space-sm;
+
+      img {
+        background-color: $color-white;
+        border-radius: 50%;
+        padding: 11px;
+      }
+
+      span {
+        display: inline-block;
+      }
+    }
+  }
+
+  // ---------- Invoice Cards ----------
+  .invoices {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    .invoice-card {
+      display: flex;
+      flex-direction: column;
+      background-color: $color-white;
+      padding: $space-md;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .id {
+        font-weight: bold;
+        color: $color-black;
+        font-size: $font-body-1;
+        margin-bottom: $space-xs;
+      }
+
+      .client-name {
+        color: $color-text-muted;
+        font-size: $font-body-2;
+        margin-bottom: $space-sm;
+      }
+
+      .payment-due {
+        font-size: $font-body-2;
+        color: $color-text-muted;
+        margin-bottom: $space-sm;
+      }
+
+      .total {
+        font-weight: bold;
+        font-size: $font-body-1;
+        margin-bottom: $space-sm;
+      }
+
+      app-status-badge {
+        margin-bottom: $space-sm;
+      }
+
+      .arrow {
+        align-self: flex-end;
+        width: 6px;
+      }
+    }
+  }
+}
+
+// Desktop (tablet and up)
+@include responsive(tablet) {
+  .invoice-list {
+    padding: 56px 48px;
+    .topbar {
+      flex-wrap: nowrap;
+
+      .text {
+        h1 {
+          font-size: $font-h2;
+        }
+
+        p {
+          font-size: $font-body-1;
+        }
+      }
+
+      .new-invoice-btn {
+        margin-top: 0;
+      }
+    }
+
+    .invoices {
+      .invoice-card {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: $space-md $space-lg;
+
+        .id,
+        .client-name,
+        .payment-due,
+        .total,
+        app-status-badge,
+        .arrow {
+          margin: 0;
+        }
+
+        .client-name,
+        .payment-due {
+          font-size: $font-body-1;
+        }
+
+        .arrow {
+          margin-left: $space-md;
+        }
+      }
+    }
+  }
+}
+
+@include responsive(desktop) {
+    .invoice-list{
+        padding: 75px 200px;
+    }
+}
+
+@include responsive(largeDesktop) {
+    .invoice-list{
+        padding: 75px 355px;
+    }
+}
