@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  font-size: $font-body-1;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: $space-sm $space-md;
+  border-radius: 6px;
+  width: fit-content;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  &.paid {
+    background-color: rgba($color-paid, 0.1);
+    color: $color-paid;
+
+    .dot {
+      background-color: $color-paid;
+    }
+  }
+
+  &.pending {
+    background-color: rgba($color-pending, 0.1);
+    color: $color-pending;
+
+    .dot {
+      background-color: $color-pending;
+    }
+  }
+
+  &.draft {
+    background-color: rgba($color-draft, 0.1);
+    color: $color-draft;
+
+    .dot {
+      background-color: $color-draft;
+    }
+  }
+}
