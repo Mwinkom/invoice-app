@@ -1,0 +1,224 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.invoice-details {
+  padding: $space-md;
+
+  .go-back {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    color: $color-black;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: $space-md;
+
+    img {
+      height: 8px;
+    }
+  }
+
+  .invoice-status-bar {
+    background-color: $color-white;
+    padding: $space-md;
+    border-radius: 8px;
+    margin-bottom: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    span {
+      color: $color-text-muted;
+    }
+
+    .actions {
+      display: flex;
+      gap: $space-sm;
+
+      .btn {
+        padding: $space-sm $space-md;
+        border-radius: 24px;
+        font-weight: bold;
+        font-size: $font-body-1;
+        border: none;
+        cursor: pointer;
+
+        &.edit {
+          background-color: $color-bg;
+          color: $color-text-muted;
+        }
+
+        &.delete {
+          background-color: $color-delete;
+          color: $color-white;
+        }
+
+        &.mark-paid {
+          background-color: $color-primary;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .invoice-card {
+    background-color: $color-white;
+    border-radius: 8px;
+    padding: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .id-desc {
+        h2 {
+          font-size: $font-h3;
+          span {
+            color: $color-text-muted;
+          }
+        }
+
+        p {
+          color: $color-text-muted;
+        }
+      }
+
+      .sender-address {
+        text-align: right;
+        font-size: $font-body-2;
+        color: $color-text-muted;
+      }
+    }
+
+    .middle {
+      display: flex;
+      flex-direction: column;
+      gap: $space-md;
+
+      p {
+        font-size: $font-body-2;
+        color: $color-text-muted;
+        margin-bottom: 0.25rem;
+      }
+
+      strong {
+        font-size: $font-body-1;
+        color: $color-black;
+      }
+
+      .bill-to,
+      .invoice-dates,
+      .sent-to {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .item-list {
+      background-color: $color-bg;
+      border-radius: 8px;
+      padding: $space-md;
+
+      .item-list-header,
+      .item {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        font-size: $font-body-2;
+        color: $color-text-muted;
+
+        p {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .item {
+        color: $color-black;
+        font-weight: bold;
+      }
+    }
+
+    .grand-total {
+      background-color: $color-black;
+      color: $color-white;
+      border-radius: 0 0 8px 8px;
+      padding: $space-md;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        font-size: $font-h2;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@include responsive(tablet) {
+  .invoice-details{
+    .invoice-status-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .invoice-card {
+    padding: $space-lg;
+
+    .top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .middle {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: $space-lg;
+
+        .invoice-dates,
+        .bill-to,
+        .sent-to {
+        flex: 1;
+        }
+
+        .sent-to {
+        text-align: right;
+        }
+    }
+
+    .item-list {
+        margin-top: $space-md;
+
+        .item-list-header,
+        .item {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+    }
+
+    .grand-total {
+        h2 {
+        font-size: $font-h1;
+        }
+    }
+    }
+}
+}
+
+@include responsive(desktop) {
+    .invoice-details{
+        padding: 48px 200px;
+    }
+}
+
+@include responsive(largeDesktop) {
+    .invoice-details{
+        padding: 48px 355px;
+    }
+}

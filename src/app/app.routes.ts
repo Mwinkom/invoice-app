@@ -1,13 +1,37 @@
 import { Routes } from '@angular/router';
 
-import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
-import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
-import { InvoiceFormComponent } from './components/invoice-form/invoice-form.component';
-
 export const routes: Routes = [
   { path: '', redirectTo: 'invoices', pathMatch: 'full' },
-  { path: 'invoices', component: InvoiceListComponent },
-  { path: 'invoices/new', component: InvoiceFormComponent },
-  { path: 'invoices/:id', component: InvoiceDetailsComponent },
-  { path: 'invoices/:id/edit', component: InvoiceFormComponent },
+
+  {
+    path: 'invoices',
+    loadComponent: () =>
+      import('./components/invoice-list/invoice-list.component').then(
+        (m) => m.InvoiceListComponent
+      ),
+  },
+
+  {
+    path: 'invoices/new',
+    loadComponent: () =>
+      import('./components/invoice-form/invoice-form.component').then(
+        (m) => m.InvoiceFormComponent
+      ),
+  },
+
+  {
+    path: 'invoices/:id',
+    loadComponent: () =>
+      import('./components/invoice-details/invoice-details.component').then(
+        (m) => m.InvoiceDetailsComponent
+      ),
+  },
+
+  {
+    path: 'invoices/:id/edit',
+    loadComponent: () =>
+      import('./components/invoice-form/invoice-form.component').then(
+        (m) => m.InvoiceFormComponent
+      ),
+  },
 ];
