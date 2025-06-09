@@ -9,14 +9,24 @@ export const routes: Routes = [
       import('./components/invoice-list/invoice-list.component').then(
         (m) => m.InvoiceListComponent
       ),
-  },
-
-  {
-    path: 'invoices/new',
-    loadComponent: () =>
-      import('./components/invoice-form/invoice-form.component').then(
-        (m) => m.InvoiceFormComponent
-      ),
+    children: [
+      {
+        path: 'new',
+        outlet: 'modal',
+        loadComponent: () =>
+          import('./components/invoice-form/invoice-form.component').then(
+            (m) => m.InvoiceFormComponent
+          ),
+      },
+      {
+        path: ':id/edit',
+        outlet: 'modal',
+        loadComponent: () =>
+          import('./components/invoice-form/invoice-form.component').then(
+            (m) => m.InvoiceFormComponent
+          ),
+      },
+    ],
   },
 
   {
@@ -24,14 +34,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/invoice-details/invoice-details.component').then(
         (m) => m.InvoiceDetailsComponent
-      ),
-  },
-
-  {
-    path: 'invoices/:id/edit',
-    loadComponent: () =>
-      import('./components/invoice-form/invoice-form.component').then(
-        (m) => m.InvoiceFormComponent
       ),
   },
 ];

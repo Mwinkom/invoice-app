@@ -1,4 +1,4 @@
-<div class="invoice-details">
+<div class="invoice-details" *ngIf="invoice as i">
 
   <a routerLink="/invoices" class="go-back">
     <img src="/assets/icon-arrow-left.svg" alt="back arrow" />
@@ -8,29 +8,26 @@
   <!-- Status + Buttons -->
   <div class="invoice-status-bar">
     <span>Status</span>
-    <app-status-badge [status]="invoice?.status"></app-status-badge>
-
+    <app-status-badge [status]="i.status"></app-status-badge>
     <div class="actions">
-      <button class="btn edit" [routerLink]="['/invoices', invoice?.id, 'edit']">
-         Edit
-      </button>
-      <button class="btn delete">Delete</button>
-      <button class="btn mark-paid">Mark as Paid</button>
+      <button class="btn edit" (click)="openEditModal()">Edit</button>
+      <button class="btn delete" (click)="deleteInvoice()">Delete</button>
+      <button class="btn mark-paid" (click)="markAsPaid()">Mark as Paid</button>
     </div>
   </div>
 
-  <!-- Invoice Info Block -->
+  <!-- Info Block -->
   <div class="invoice-card">
     <div class="top">
       <div class="id-desc">
-        <h2><span>#</span>{{ invoice?.id }}</h2>
-        <p>{{ invoice?.description }}</p>
+        <h2><span>#</span>{{ i.id }}</h2>
+        <p>{{ i.description }}</p>
       </div>
       <div class="sender-address">
-        <p>{{ invoice?.senderAddress.street }}</p>
-        <p>{{ invoice?.senderAddress.city }}</p>
-        <p>{{ invoice?.senderAddress.postCode }}</p>
-        <p>{{ invoice?.senderAddress.country }}</p>
+        <p>{{ i.senderAddress.street }}</p>
+        <p>{{ i.senderAddress.city }}</p>
+        <p>{{ i.senderAddress.postCode }}</p>
+        <p>{{ i.senderAddress.country }}</p>
       </div>
     </div>
 
@@ -38,30 +35,29 @@
       <div class="invoice-dates">
         <div>
           <p>Invoice Date</p>
-          <strong>{{ invoice?.createdAt }}</strong>
+          <strong>{{ i.createdAt }}</strong>
         </div>
         <div>
           <p>Payment Due</p>
-          <strong>{{ invoice?.paymentDue }}</strong>
+          <strong>{{ i.paymentDue }}</strong>
         </div>
       </div>
 
       <div class="bill-to">
         <p>Bill To</p>
-        <strong>{{ invoice?.clientName }}</strong>
-        <p>{{ invoice?.clientAddress.street }}</p>
-        <p>{{ invoice?.clientAddress.city }}</p>
-        <p>{{ invoice?.clientAddress.postCode }}</p>
-        <p>{{ invoice?.clientAddress.country }}</p>
+        <strong>{{ i.clientName }}</strong>
+        <p>{{ i.clientAddress.street }}</p>
+        <p>{{ i.clientAddress.city }}</p>
+        <p>{{ i.clientAddress.postCode }}</p>
+        <p>{{ i.clientAddress.country }}</p>
       </div>
 
       <div class="sent-to">
         <p>Sent to</p>
-        <strong>{{ invoice?.clientEmail }}</strong>
+        <strong>{{ i.clientEmail }}</strong>
       </div>
     </div>
 
-    <!-- Item List -->
     <div class="item-list">
       <div class="item-list-header">
         <p>Item Name</p>
@@ -70,7 +66,7 @@
         <p>Total</p>
       </div>
 
-      <div class="item" *ngFor="let item of invoice?.items">
+      <div class="item" *ngFor="let item of i.items">
         <p>{{ item.name }}</p>
         <p>{{ item.quantity }}</p>
         <p>{{ item.price | currency }}</p>
@@ -80,7 +76,8 @@
 
     <div class="grand-total">
       <p>Amount Due</p>
-      <h2>{{ invoice?.total | currency }}</h2>
+      <h2>{{ i.total | currency }}</h2>
     </div>
   </div>
+
 </div>
