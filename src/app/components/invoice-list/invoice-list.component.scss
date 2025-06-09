@@ -4,7 +4,6 @@
 .invoice-list {
   padding: $space-md;
 
-  // ---------- Top Bar ----------
   .topbar {
     display: flex;
     justify-content: space-between;
@@ -12,13 +11,27 @@
     margin-bottom: $space-lg;
     flex-wrap: wrap;
 
+    .text {
+      h1 {
+        font-size: $font-h1;
+        color: $color-black;
+        margin-bottom: $space-xs;
+      }
+
+      p {
+        color: $color-text-muted;
+        font-size: $font-body-1;
+      }
+    }
+
     .filters {
-        font-size: $font-h3;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        gap: $space-sm;
-    select {
+      font-size: $font-h3;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: $space-sm;
+
+      select {
         appearance: none;
         color: $color-black;
         font-size: $font-body-1;
@@ -34,23 +47,9 @@
         background-size: 0.75rem;
 
         &:focus {
-        outline: none;
-        border-color: $color-primary;
+          outline: none;
+          border-color: $color-primary;
         }
-    }
-    }
-
-
-    .text {
-      h1 {
-        font-size: $font-h1;
-        color: $color-black;
-        margin-bottom: $space-xs;
-      }
-
-      p {
-        color: $color-text-muted;
-        font-size: $font-body-1;
       }
     }
 
@@ -80,8 +79,7 @@
     }
   }
 
-  // ---------- Invoice Cards ----------
-  .invoices {
+  .invoice-list-cards {
     display: flex;
     flex-direction: column;
     gap: $space-md;
@@ -137,10 +135,11 @@
   }
 }
 
-// Desktop (tablet and up)
+// Tablet and up
 @include responsive(tablet) {
   .invoice-list {
     padding: 56px 48px;
+
     .topbar {
       flex-wrap: nowrap;
 
@@ -159,7 +158,7 @@
       }
     }
 
-    .invoices {
+    .invoice-list-cards {
       .invoice-card {
         flex-direction: row;
         justify-content: space-between;
@@ -188,14 +187,42 @@
   }
 }
 
+// Desktop
 @include responsive(desktop) {
-    .invoice-list{
-        padding: 75px 200px;
-    }
+  .invoice-list {
+    padding: 75px 200px;
+  }
 }
 
+// Large Desktop
 @include responsive(largeDesktop) {
-    .invoice-list{
-        padding: 75px 355px;
-    }
+  .invoice-list {
+    padding: 75px 355px;
+  }
+}
+
+.empty-state {
+  margin-top: 4rem;
+  text-align: center;
+  color: $color-text-muted;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+
+  .empty-img {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: $font-h2;
+    color: $color-black;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: $font-body-1;
+    max-width: 260px;
+    line-height: 1.5;
+  }
 }
