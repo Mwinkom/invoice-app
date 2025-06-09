@@ -1,1 +1,68 @@
-<p>invoice-form works!</p>
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="invoice-form">
+  <h1>{{ isEditMode ? 'Edit Invoice' : 'New Invoice' }}</h1>
+
+  <section class="section">
+    <h2>Bill From</h2>
+    <label>Street Address</label>
+    <input formControlName="senderStreet" />
+
+    <div class="three-columns">
+      <div>
+        <label>City</label>
+        <input formControlName="senderCity" />
+      </div>
+      <div>
+        <label>Post Code</label>
+        <input formControlName="senderPostCode" />
+      </div>
+      <div>
+        <label>Country</label>
+        <input formControlName="senderCountry" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Bill To</h2>
+    <label>Client’s Name</label>
+    <input formControlName="clientName" />
+
+    <label>Client’s Email</label>
+    <input formControlName="clientEmail" />
+
+    <label>Street Address</label>
+    <input formControlName="clientStreet" />
+
+    <div class="three-columns">
+      <div>
+        <label>City</label>
+        <input formControlName="clientCity" />
+      </div>
+      <div>
+        <label>Post Code</label>
+        <input formControlName="clientPostCode" />
+      </div>
+      <div>
+        <label>Country</label>
+        <input formControlName="clientCountry" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <label>Invoice Date</label>
+    <input type="date" formControlName="createdAt" />
+
+    <label>Payment Due</label>
+    <input type="date" formControlName="paymentDue" />
+
+    <label>Project Description</label>
+    <input formControlName="description" />
+  </section>
+
+  <div class="actions">
+    <button type="submit" class="btn-primary">
+      {{ isEditMode ? 'Save Changes' : 'Save Invoice' }}
+    </button>
+  </div>
+</form>
