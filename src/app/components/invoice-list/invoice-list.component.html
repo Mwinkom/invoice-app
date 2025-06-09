@@ -1,51 +1,37 @@
-<div class="invoice-list">
-  <!-- Topbar -->
+<section class="invoice-list">
   <div class="topbar">
     <div class="text">
       <h1>Invoices</h1>
-      <p *ngIf="invoices.length > 0">
-        There are {{ filteredInvoices.length }} total invoices
-      </p>
+      <p>There are {{ invoices.length }} pending invoices</p>
     </div>
 
     <div class="filters">
-      <label for="status-filter" class="visually-hidden">Filter by status</label>
-      <select id="status-filter" [(ngModel)]="selectedStatus">
-        <option value="">All</option>
-        <option value="paid">Paid</option>
-        <option value="pending">Pending</option>
-        <option value="draft">Draft</option>
-      </select>
+        <label for="status-filter" class="visually-hidden">Filter</label>
+        <select id="status-filter" [(ngModel)]="selectedStatus">
+            <option value="">All</option>
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+            <option value="draft">Draft</option>
+        </select>
     </div>
 
-    <button class="new-invoice-btn" [routerLink]="[{ outlets: { modal: ['new'] } }]">
+    <button class="new-invoice-btn" [routerLink]="['/invoices', 'new']">
       <img src="assets/icon-plus.svg" alt="plus icon" />
       <span>New Invoice</span>
     </button>
+
   </div>
 
-  <!-- Empty State -->
-  <div *ngIf="invoices.length === 0" class="empty-state">
-    <img src="assets/illustration-empty.svg" alt="No invoices" class="empty-img" />
-    <h2>There is nothing here</h2>
-    <p>Create an invoice by clicking the <strong>New</strong> button and get started</p>
-  </div>
-
-  <!-- Invoice Cards -->
-  <div *ngIf="filteredInvoices.length > 0" class="invoice-list-cards">
-    <div
-      class="invoice-card"
-      *ngFor="let invoice of filteredInvoices"
-      [routerLink]="['/invoices', invoice.id]"
-    >
-      <p class="id"><span>#</span>{{ invoice.id }}</p>
-      <p class="client-name">{{ invoice.clientName }}</p>
-      <p class="payment-due">{{ invoice.paymentDue | date }}</p>
-      <p class="total">{{ invoice.total | currency }}</p>
+  <div class="invoices">
+    @for (invoice of filteredInvoices; track invoice.id) {
+  <div class="invoice-card" [routerLink]="['/invoices', invoice.id]">
+      <div class="id">#{{ invoice.id }}</div>
+      <div class="payment-due">Due {{ invoice.paymentDue }}</div>
+      <div class="client-name">{{ invoice.clientName }}</div>
+      <div class="total">{{ invoice.total | currency }}</div>
       <app-status-badge [status]="invoice.status"></app-status-badge>
-      <img src="assets/icon-arrow-right.svg" class="arrow" />
+      <img src="assets/icon-arrow-right.svg" alt="View Invoice" class="arrow" />
     </div>
-  </div>
+    }
 </div>
-
-<router-outlet name="modal"></router-outlet>
+</section>

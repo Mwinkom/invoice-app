@@ -1,105 +1,59 @@
-# Invoice App - Angular Project
+# InvoiceApp
 
-This project is an **Invoice Management Application** built using **Angular 17+ standalone components**. It allows users to create, edit, view, and delete invoices in a responsive, user-friendly interface modeled directly from the Figma design file.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
----
+## Development server
 
-## 🚀 Setup & Run Instructions
+To start a local development server, run:
 
-### 1. Create a new Angular project (if not already created)
-```bash
-ng new invoice-app --standalone --style=scss --routing
-cd invoice-app
-```
-
-### 2. Add necessary components and services
-Create components:
-```bash
-ng generate component components/invoice-list --standalone
-ng generate component components/invoice-details --standalone
-ng generate component components/invoice-form --standalone
-ng generate component components/status-badge --standalone
-```
-
-Create service:
-```bash
-ng generate service services/invoice
-```
-
-### 3. Run the development server
 ```bash
 ng serve
 ```
-Navigate to: [http://localhost:4200](http://localhost:4200)
 
----
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## 📦 Features Implemented
+## Code scaffolding
 
-- **View Invoices:** Displays a list of invoices with status filtering and responsive cards
-- **Invoice Details Page:** Shows complete invoice info including client/sender data and item breakdown
-- **New Invoice Modal:** Opens as a modal overlay using Angular named outlets; includes a reactive form
-- **Edit Invoice Modal:** Reuses the new invoice form, prefilled via routing and service injection
-- **Delete Invoice:** Deletes the invoice from localStorage and updates the list
-- **Mark as Paid:** Updates invoice status to "paid" via service
-- **Responsive Design:** Mobile-first and scales to tablet & desktop views
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
----
-
-## 🏛️ Component Structure
-
-```
-src/
-├── components/
-│   ├── invoice-list/
-│   ├── invoice-details/
-│   ├── invoice-form/
-│   └── status-badge/
-├── services/
-│   └── invoice.service.ts
-├── styles/
-│   ├── _variables.scss
-│   ├── _mixins.scss
-│   ├── _base.scss
-│   ├── main.scss
+```bash
+ng generate component component-name
 ```
 
----
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-## 🔁 Routing Overview
+```bash
+ng generate --help
+```
 
-| Route | Description |
-|-------|-------------|
-| `/invoices` | Shows invoice list |
-| `/invoices/:id` | Invoice details view |
-| `/invoices(modal:new)` | New invoice form modal |
-| `/invoices(modal:ID/edit)` | Edit invoice form modal |
+## Building
 
----
+To build the project run:
 
-## 🧠 Architectural Choices
+```bash
+ng build
+```
 
-- **Standalone Components:** Modern Angular structure using `standalone: true` and lazy loading
-- **Named Router Outlets:** Enables modal routing without replacing the base view
-- **Reactive Forms:** Used for form validation and data handling
-- **LocalStorage Persistence:** Invoices are saved and loaded from browser localStorage
-- **SCSS Variables + Mixins:** Shared design tokens for consistent spacing, colors, and breakpoints
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
----
+## Running unit tests
 
-## ✅ Git Workflow
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-- Branches:
-  - `main`
-  - `dev`
-  - `feature/invoice-list`
-  - `feature/invoice-details`
-  - `feature/invoice-form`
-- Feature branches are merged into `main` when feature development is complete.
-- Testing is minimal (short testing before merging into `main`).
+```bash
+ng test
+```
 
----
+## Running end-to-end tests
 
-## 📄 Author & Credits
+For end-to-end (e2e) testing, run:
 
-Developed by: **Mildred Naab**  
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
