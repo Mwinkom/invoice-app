@@ -15,10 +15,11 @@
         </select>
     </div>
 
-    <button class="new-invoice-btn">
+    <button class="new-invoice-btn" [routerLink]="['/invoices', 'new']">
       <img src="assets/icon-plus.svg" alt="plus icon" />
       <span>New Invoice</span>
     </button>
+
   </div>
 
   <div class="invoices">

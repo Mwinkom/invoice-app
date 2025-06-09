@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+.invoice-form {
+  padding: $space-md;
+  background-color: $color-white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  h1 {
+    font-size: $font-h2;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    h2 {
+      font-size: $font-body-1;
+      color: $color-primary;
+    }
+
+    label {
+      font-size: $font-body-2;
+      font-weight: bold;
+      color: $color-text-muted;
+    }
+
+    input {
+      padding: $space-sm;
+      border: 1px solid $color-text-muted;
+      border-radius: 6px;
+      font-size: $font-body-1;
+    }
+
+    .three-columns {
+      display: flex;
+      gap: $space-sm;
+
+      div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-primary {
+      background-color: $color-primary;
+      color: $color-white;
+      padding: $space-sm $space-md;
+      border: none;
+      border-radius: 24px;
+      font-weight: bold;
+      font-size: $font-body-1;
+    }
+  }
+}
